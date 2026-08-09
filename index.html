@@ -511,17 +511,28 @@ footer{border-top:1px solid rgba(194,160,82,.15);background:#040302}
 /* ============ DATOS DEL EVENTO 1 (preview) ============ */
 var PRECIOS = { gold: 500, silver: 400 };
 
-/* ====== STRIPE: pega aquí tus Payment Links (mismo Stripe, distinto precio) ====== */
+/* ==================================================================
+   CONFIGURACIÓN DE ESTE EVENTO  (edita solo lo de abajo)
+   ================================================================== */
+
+/* 1) STRIPE, links de pago de este evento */
 var PAGO = {
-  gold:   "PENDING",   /* Mesas Gold  ($500 USD) */
-  silver: "PENDING"    /* Mesas Silver ($400 USD) */
+  gold:   "https://buy.stripe.com/9B6aEY6wx3b4c2xg0s2cg00",     /* Mesas Gold  ($500 USD) */
+  silver: "https://buy.stripe.com/bJe8wQ089eTMgiN01u2cg01"    /* Mesas Silver ($400 USD) */
 };
+
+/* 2) MESAS BLOQUEADAS (no disponibles).
+   Pon aquí los números que NO se pueden vender, separados por coma.
+   Ejemplo:  var BLOQUEADAS = [1, 2, 15, 40];
+   Para liberar una mesa, quítala de la lista y vuelve a subir el archivo. */
+var BLOQUEADAS = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 18, 19, 20, 21, 22, 29, 31, 41];
+/* ================================================================== */
 var NUMS = {
   gold:   Array.from({length:14}, function(_,i){return i+1}),
   silver: Array.from({length:40}, function(_,i){return i+15})
 };
 /* Estados de ejemplo para mostrar libre / vendida / bloqueada */
-var ESTADOS = { vendida:[], bloqueada:[] };
+
 
 var selCat = null, selTable = null;
 
@@ -542,10 +553,7 @@ function resetUI(){
 }
 
 function estadoDe(n){
-  var s = String(n);
-  if(ESTADOS.vendida.indexOf(s)>-1) return 'vendida';
-  if(ESTADOS.bloqueada.indexOf(s)>-1) return 'bloqueada';
-  return 'libre';
+  return (BLOQUEADAS.indexOf(parseInt(n,10)) > -1) ? 'bloqueada' : 'libre';
 }
 
 function selectCategory(cat){
@@ -591,7 +599,7 @@ function selectTable(n, cat){
 function confirmar(n, cat){
   var link = PAGO[cat];
   if(!link || link==='PENDING'){
-    alert('Falta el link de pago de Stripe para las mesas '+cat.toUpperCase()+'.\n\nCrea el Payment Link en Stripe y pégalo en la variable PAGO al inicio del script.');
+    alert('Falta el link de pago de Stripe para las mesas '+cat.toUpperCase()+'.');
     return;
   }
   var ref = 'tamaulipas-Mesa-'+n;
