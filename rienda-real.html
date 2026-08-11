@@ -525,7 +525,13 @@ var PAGO = {
    Pon aquí los números que NO se pueden vender, separados por coma.
    Ejemplo:  var BLOQUEADAS = [1, 2, 15, 40];
    Para liberar una mesa, quítala de la lista y vuelve a subir el archivo. */
-var BLOQUEADAS = [];
+var BLOQUEADAS = [4, 5, 6];
+
+/* 3) AVISO POR CORREO (opcional): recibe un email con el numero de mesa cuando
+   alguien pulsa "Confirmar Reserva". Consigue tu clave gratis en https://web3forms.com
+   y pegala aqui. Dejalo en "PENDING" si por ahora no quieres avisos. */
+var NOTIF_KEY = "PENDING";
+var EVENTO = "Rienda Real y Pócima Norteña";
 /* ================================================================== */
 var NUMS = {
   gold:   Array.from({length:14}, function(_,i){return i+1}),
@@ -603,6 +609,26 @@ function confirmar(n, cat){
     return;
   }
   var ref = 'rienda-Mesa-'+n;
+
+  // Aviso por correo con el numero de mesa (keepalive lo envia aunque vayamos a Stripe)
+  try {
+    if (NOTIF_KEY && NOTIF_KEY !== 'PENDING') {
+      fetch('https://api.web3forms.com/submit', {
+        method:'POST', keepalive:true,
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({
+          access_key: NOTIF_KEY,
+          subject: 'Reserva iniciada: ' + EVENTO + ' - Mesa ' + n,
+          from_name: 'Plaza Malloy Arena',
+          Evento: EVENTO, Mesa: n,
+          Tipo: (cat==='gold'?'Gold':'Silver'),
+          Precio: '$' + PRECIOS[cat] + ' USD',
+          Referencia: ref
+        })
+      }).catch(function(){});
+    }
+  } catch(e){}
+
   var url = link + (link.indexOf('?')>-1?'&':'?') + 'client_reference_id=' + encodeURIComponent(ref);
   window.location.href = url;
 }
