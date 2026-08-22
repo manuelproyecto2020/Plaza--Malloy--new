@@ -144,7 +144,7 @@ section{margin-bottom:120px}
 .btn-primary:hover{background:var(--amber-500);transform:translateY(-1px)}
 .cross{margin-top:56px}
 .cross .lbl{color:var(--muted-2);font-size:10px;text-transform:uppercase;letter-spacing:.4em;font-weight:700;margin-bottom:24px}
-.cross-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:1040px;margin:0 auto}
+.cross-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;max-width:1180px;margin:0 auto}
 .cross-item img{width:100%;border-radius:1.5rem;border:1px solid rgba(194,160,82,.25);transition:transform .6s}
 .cross-item:hover img{transform:scale(1.03)}
 .cross-item .pill{display:inline-block;margin-top:16px;background:var(--amber);color:#fff;font-weight:900;padding:12px 28px;border-radius:999px;text-transform:uppercase;letter-spacing:.15em;font-size:11px;transition:background .25s}
@@ -346,9 +346,7 @@ footer{border-top:1px solid rgba(194,160,82,.15);background:#040302}
       <span class="corner tl"></span><span class="corner tr"></span>
     </div>
 
-    <div style="text-align:center;margin:30px 0 4px"><a href="https://ticketon.com/events/los-dos-de-tamaulipas-los-originales-de-san-juan--mas-ferris-tx-2026-08-29-mampkbe7wulb" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(90deg,#C2A052,#E0C07A);color:#1a1509;font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:13px;padding:17px 40px;border-radius:999px;text-decoration:none;box-shadow:0 16px 34px -10px rgba(194,160,82,.6)">Compra tus boletos aquí</a></div><div class="cross">
-      <p class="lbl">Más Eventos en Plaza Malloy</p>
-      <div class="cross-grid"><div class="cross-item"><a href="/rienda-real"><img src="assets/rienda-flyer.jpg" alt="Rienda Real y Pócima Norteña"></a><div><a href="/rienda-real"><span class="pill">Rienda Real y Pócima Norteña · Reservar</span></a></div></div><div class="cross-item"><a href="/la-zenda-nortena"><img src="assets/zenda-flyer.jpg" alt="La Zenda Norteña"></a><div><a href="/la-zenda-nortena"><span class="pill">La Zenda Norteña · Reservar</span></a></div></div><div class="cross-item"><a href="/el-fantasma"><img src="assets/fantasma-flyer.jpg" alt="El Fantasma"></a><div><a href="/el-fantasma"><span class="pill">El Fantasma · Reservar</span></a></div></div></div></div></section>
+    <div style="text-align:center;margin:30px 0 4px"><a href="https://ticketon.com/events/los-dos-de-tamaulipas-los-originales-de-san-juan--mas-ferris-tx-2026-08-29-mampkbe7wulb" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(90deg,#C2A052,#E0C07A);color:#1a1509;font-weight:900;text-transform:uppercase;letter-spacing:.12em;font-size:13px;padding:17px 40px;border-radius:999px;text-decoration:none;box-shadow:0 16px 34px -10px rgba(194,160,82,.6)">Compra tus boletos aquí</a></div><div class="cross"><p class="lbl">Más Eventos en Plaza Malloy</p><div class="cross-grid"><div class="cross-item"><a href="/rienda-real"><img src="assets/rienda-flyer.jpg" alt="Rienda Real y Pócima Norteña"></a><div><a href="/rienda-real"><span class="pill">Rienda Real y Pócima Norteña · Reservar</span></a></div></div><div class="cross-item"><a href="/la-zenda-nortena"><img src="assets/zenda-flyer.jpg" alt="La Zenda Norteña"></a><div><a href="/la-zenda-nortena"><span class="pill">La Zenda Norteña · Reservar</span></a></div></div><div class="cross-item"><a href="/el-fantasma"><img src="assets/fantasma-flyer.jpg" alt="El Fantasma"></a><div><a href="/el-fantasma"><span class="pill">El Fantasma · Reservar</span></a></div></div><div class="cross-item"><a href="/la-energia-nortena"><img src="assets/energia-flyer.jpg" alt="La Energía Norteña"></a><div><a href="/la-energia-nortena"><span class="pill">La Energía Norteña · Reservar</span></a></div></div></div></div></section>
 
   <!-- ====================== ABOUT ====================== -->
   <section class="about" id="nosotros">
@@ -523,9 +521,9 @@ var PAGO = {
 
 /* 2) MESAS BLOQUEADAS (no disponibles).
    Pon aquí los números que NO se pueden vender, separados por coma.
-   Ejemplo:  var BLOQUEADAS = [1, 2, 15, 40];
+   Ejemplo:  var BLOQUEADAS = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30, 31, 32, 41];
    Para liberar una mesa, quítala de la lista y vuelve a subir el archivo. */
-var BLOQUEADAS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 32, 34, 38, 39, 40, 41, 42, 43];
+var BLOQUEADAS = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30, 31, 32, 41];
 var SLUG = "tamaulipas";
 
 /* 3) SUPABASE (bloqueo automático de mesas pagadas).
