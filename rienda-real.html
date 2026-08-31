@@ -523,7 +523,7 @@ var PAGO = {
    Pon aquí los números que NO se pueden vender, separados por coma.
    Ejemplo:  var BLOQUEADAS = [4, 5, 6];
    Para liberar una mesa, quítala de la lista y vuelve a subir el archivo. */
-var BLOQUEADAS = [4, 5, 6, 18];
+var BLOQUEADAS = [1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 22, 23, 26, 27, 28, 29, 30, 31, 32, 41];
 var SLUG = "rienda";
 
 /* 3) SUPABASE (bloqueo automático de mesas pagadas).
@@ -625,7 +625,7 @@ function confirmar(n, cat){
     alert('Falta el link de pago de Stripe para las mesas '+cat.toUpperCase()+'.');
     return;
   }
-  var ref = 'tamaulipas-Mesa-'+n;
+  var ref = SLUG + '-Mesa-' + n;
   var url = link + (link.indexOf('?')>-1?'&':'?') + 'client_reference_id=' + encodeURIComponent(ref);
   window.location.href = url;
 }
